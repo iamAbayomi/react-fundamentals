@@ -7,7 +7,6 @@ import './api/server'
 
 // Omit existing React imports
 
-import store from './store'
 
 // Log the initial state
 // console.log('Initial state: ', store.getState())
