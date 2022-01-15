@@ -5,7 +5,7 @@ import TodoListItem from './TodoListItem'
 const selectTodos = state => state.todos
 
 const selectTotalCompletedTodos = state => {
-    const comletedTodos = state.todos.filter(todo => todo.completed)
+    const completedTodos = state.todos.filter(todo => todo.completed)
     return completedTodos.length
 }
 
