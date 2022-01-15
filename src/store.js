@@ -5,11 +5,18 @@ import {
     includeMeaningOfLife    
 } from "./exampleAddons/enhancers";
 import { print1, print2, print3 } from "./exampleAddons/middleware";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const middlewareEnhancer = applyMiddleware(print1, print2, print3)
 
+const composedEnhancer = composeWithDevTools(
+    // EXAMPLE: Add whatever middleware you actually want to use here
+    applyMiddleware(print1, print2, print3)
+    // other store enhancers if any
+)
+
 // Pass enchancer as the second arg, since there's no preloadedState
-const store = createStore(rootReducer, middlewareEnhancer)
+const store = createStore(rootReducer, composedEnhancer)
 
 
 // This example show us how to use enhancers in create store
