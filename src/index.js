@@ -32,11 +32,22 @@ store.dispatch({
 
 
 // Stop listening to state updates
-unsubscribe()
+// unsubscribe()
 
 // Dispatch one more action to see what happens
-
 store.dispatch({ type: 'todos/todoAdded', payload: 'Try creating a store'})
+
+
+console.log('Dispatching actions')
+store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+console.log('Dispatching complete')
+
+
+store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+// log: 'Hi'
+
+console.log('State after dispatch: ', store.getState())
+
 
 ReactDOM.render(
   <React.StrictMode>
