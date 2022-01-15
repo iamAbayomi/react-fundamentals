@@ -16,7 +16,7 @@ const RemainingTools = ({ count }) => {
 }
 
 const StatusFilter = ({ value: status, onChange }) =>  {
-  const renderedFilters = Object.keys(StatusFilter).map((key) =>{
+  const renderedFilters = Object.keys(StatusFilters).map((key) =>{
      const value = StatusFilters[key]
      const handleClick  = () => onChange(value)
      const className = value === status ? 'selected' : ''
@@ -30,8 +30,8 @@ const StatusFilter = ({ value: status, onChange }) =>  {
      )
   })
   return(
-      <div className='filters statusFilters'> 
-          <h2>Filter by Status</h2>
+    <div className="filters statusFilters">
+          <h5>Filter by Status</h5>
           <ul> {renderedFilters} </ul>
       </div>
   )
