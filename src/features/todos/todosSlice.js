@@ -15,7 +15,7 @@ export default function todosReducer(state = initialState, action){
                     ...state,
                     {
                         // Use an auto-incrementing numeric ID for this example
-                        id: nextTodoId(state.todos),
+                        id: nextTodoId(state),
                         text: action.payload,
                         completed: false
                     }
