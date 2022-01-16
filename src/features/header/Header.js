@@ -13,9 +13,8 @@ const Header = () => {
     // If the user pressed the Enter key:
     const trimmedText = text.trim()
     if (e.which === 13 && trimmedText) {
-      // Create the thunk function and immediatley dispatch ut
+      // Create and dispatch the thunk function itself
       dispatch(saveNewTodo(trimmedText))
-      
       // And clear out the text input
       setText('')
     }

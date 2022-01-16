@@ -13,12 +13,12 @@ function App() {
         </section>
       </nav>
       <main>
-        <section className='medium-container'>
+        <section className="medium-container">
           <h2>Todos</h2>
-          <div className='todoapp'>
-              <Header />
-              <TodoList />
-              <Footer />
+          <div className="todoapp">
+            <Header />
+            <TodoList />
+            <Footer />
           </div>
         </section>
       </main>
