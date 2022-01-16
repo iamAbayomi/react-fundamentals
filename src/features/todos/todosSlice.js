@@ -2,11 +2,20 @@ import { client } from '../../api/client'
 import { createSelector } from 'reselect'
 import { StatusFilters } from '../filters/filtersSlice'
 
-const initialState = []
+const initialState = {
+  status: 'idle',
+  entities: []
+}
 
 export const todosLoaded = todos => ({ type: 'todos/todosLoaded', payload: todos })
 
 export const todoAdded = todo => ({type: 'todos/todoAdded', payload: todo})
+
+export const selectTodos = state => state.todos
+
+export const selectTodoById = (state, todoId) => {
+  return selectTodos(state).find(todo =>  todo.id === todoId)
+}
 
 export default function todosReducer(state = initialState, action) {
   switch (action.type) {
@@ -49,8 +58,18 @@ export default function todosReducer(state = initialState, action) {
     case 'todos/completedCleared': {
       return state.filter((todo) => !todo.completed)
     }
+    case 'todos/todosLoading': {
+      return{
+        ...state,
+        status: 'loading'  
+      }
+    }
     case 'todos/todosLoaded': {
-      return action.payload
+      return {
+        ...state,
+        status: 'idle',
+        entities: action.payload
+      }
     }
     default:
       return state
@@ -87,17 +106,24 @@ export const selectTodoIds  = createSelector(
 
 export const selectFilteredTodos = createSelector(
     // First input selector: all todos
-    state => state.todos,
-    // Second input selector: current status filter
-    state => state.filter.status,
+    selectTodos,
+    // Second input selector: all filter values
+    state => state.filters,
     // Output selector: receives both values
-    (todos, status) => {
-      if(status === StatusFilters.All){
+    (todos, filters) => {
+      const { status, colors } = filters
+      const showAllCompletions = status === StatusFilters.All
+      if(showAllCompletions && colors.length === 0){
           return todos
       }
-      const completedStauts = status === StatusFilters.Completed
+      const completedStatus = status === StatusFilters.Completed
       // Return either active or completed todos based on filter
-      return todos.filter(todo => todo.completed === completedStauts)
+      return todos.filter(todo => {
+         const statusMatches = 
+            showAllCompletions || todo.completed === completedStatus
+        const colorMatches = colors.length === 0 || colors.includes(todo.color)
+        return statusMatches && colorMatches
+      })
     }
 )
 
