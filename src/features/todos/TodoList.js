@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectTodoIds } from './todosSlice'
 import TodoListItem from './TodoListItem'
 
