@@ -8,6 +8,7 @@ import App from './App'
 import store from './store'
 import { fetchTodos } from './features/todos/todosSlice'
 
+store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions'})
 store.dispatch(fetchTodos)
 
 ReactDOM.render(
@@ -32,7 +33,7 @@ ReactDOM.render(
 //   console.log('State after dispatch: ', store.getState())
 // )
 
-// store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions'})
+
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about reducers'})
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about stores'})
 
